@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+    * {
+      margin: 0%;
+      padding: 0%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    #screen {
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+    }
+
+    :root {
+            --initial: 0vw, 0vh;
+            --final: 90vw, 90vh;
+        }
+
+    #symbol {
+      width: 10%;
+      height: 10%;
+      animation-name: move;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    @keyframes move {
+      from {
+        transform: translate(var(--initial));
+      }
+
+      to {
+        transform: translate(var(--final));
+      }
+    }
+  </style>
+  </head>
+  <body>
+    <div id="screen">
+      <div id="symbol">
+        <img src="./dvd.png" alt="dvd">
+      </div>
+    </div>
+
+    <script>
+      const dvd = document.getElementById("symbol")
+      const vars = document.documentElement.style
+      let initial = '0vw, 0vh'
+      let final = '90vw, 50vh'
+      vars.setProperty('--final', final)
+
+      let delay = 5000
+      dvd.style.animationDuration = `${delay/1000}s`
+      
+      let count = 1
+      let val2 = 50
+
+      setInterval(() => {
+        const val1 = (count % 4)+ 1  > 2 ? 0 : 90
+        val2 = (val2 + Math.floor(80 - Math.random()*3)*10 - 10) % 90
+        initial = final
+        final = count % 2 === 0 ? `${val1}vw, ${val2}vh` : `${val2}vw, ${val1}vh`
+        vars.setProperty('--initial', initial)
+        vars.setProperty('--final', final)
+        // console.log(final);
+        
+        count += 1
+      },delay)
+      
+    </script>
+  </body>
+</html>
+
+<!-- const thing = document.createElement("thing") -->
+<!-- h.textContent = 'some' -->
