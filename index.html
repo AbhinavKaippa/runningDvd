@@ -66,7 +66,7 @@
 
       setInterval(() => {
         const val1 = (count % 4)+ 1  > 2 ? 0 : 90
-        val2 = (val2 + Math.floor(80 - Math.random()*3)*10 - 10) % 90
+        val2 = (val2 + Math.floor(Math.random()*3)*10 - 10) % 90
         initial = final
         final = count % 2 === 0 ? `${val1}vw, ${val2}vh` : `${val2}vw, ${val1}vh`
         vars.setProperty('--initial', initial)
